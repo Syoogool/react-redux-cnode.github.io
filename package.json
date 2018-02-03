@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
+    "fastclick": "^1.0.6",
     "gh-pages": "^1.1.0",
     "history": "^4.7.2",
     "prop-types": "^15.6.0",
@@ -18,7 +19,7 @@
     "react-scripts": "1.1.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.77.2",
     "styled-components": "^2.4.0",
     "timeago-react": "^2.0.0"

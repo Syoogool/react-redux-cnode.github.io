@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 // import createHistory from 'history/createBrowserHistory'
 import createHistory from 'history/createHashHistory'
+import FastClick from 'fastclick'
 import { auth } from './actions/auth'
 import App from './containers/App/App'
 import rootReducer from './reducers/'
@@ -32,6 +33,11 @@ if (window.sessionStorage.length > 0) {
   const token = JSON.parse(window.sessionStorage.getItem('auth'))
   store.dispatch(auth(token))
 }
+
+// 处理点击移动端300ms延迟
+window.addEventListener('load', () => {
+  FastClick.attach(document.body)
+})
 
 ReactDOM.render(
   <Provider store={store}>

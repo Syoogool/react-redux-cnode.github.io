@@ -1,7 +1,5 @@
 // article actions
 import { REQUEST_ARTICLE, RECEIVE_SUCESS, RECEIVE_FAIL } from '../actions/article'
-// 评论actions
-import { POST_COMMENT, POST_SUCESS, POST_FAIL } from '../actions/addComment'
 
 const article = (state = {
   replies: [],
@@ -23,10 +21,6 @@ const article = (state = {
         ...action.data
       }
     case RECEIVE_FAIL:
-      return {
-        ...state
-      }
-    case POST_SUCESS:
       return {
         ...state
       }

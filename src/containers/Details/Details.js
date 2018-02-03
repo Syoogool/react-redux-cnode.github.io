@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import classNames from 'classnames'
 import { format } from '../../utils/index'
 import { fetchPostsIfNeeded, receiveSucess } from '../../actions/article'
+import HeaderNav from '../../components/HeaderNav'
 import './github-markdown.css'
 import './details.css'
 
@@ -12,7 +14,12 @@ class Details extends React.Component {
   constructor (props) {
     super(props)
     this.submit = this.submit.bind(this)
+    this.goBack = this.goBack.bind(this)
+    this.state = {
+      isPosting: false
+    }
   }
+
   componentDidMount () {
     const { dispatch, match } = this.props
     const id = match.url.slice(7)
@@ -31,11 +38,22 @@ class Details extends React.Component {
     const { value: content } = this.refs.comment
     const url = `https://cnodejs.org/api/v1/topic/${topicId}/replies`
 
+    this.setState({
+      isPosting: true
+    })
+
     axios.post(url, {
       accesstoken: token,
       content: content
     })
     .then(res => {
+      this.setState({
+        isPosting: false
+      })
+
+      // 重置表单
+      this.refs.form.reset()
+
       const data = {
         author: {
           avatar_url: avatar_url,
@@ -52,7 +70,6 @@ class Details extends React.Component {
         const comment = { ...data, id: res.data.reply_id }
         const postData = { ...this.props.article, replies: [...replies, comment] }
 
-        console.log(postData)
         this.props.dispatch(receiveSucess(topicId, postData))
       }
     })
@@ -65,14 +82,14 @@ class Details extends React.Component {
     // 如何拿到深层数据
     // 这个问题貌似说明要使用的数据最好在state中初始化，特别是要迭代的对象
     const {author, content, isFetching, replies, title} = this.props.article
+    const btnSubmitClass = classNames(
+      'ui', 'blue', 'labeled', 'submit', 'icon', 'button',
+      { 'disabled': this.state.isPosting }
+    )
 
     return (
       <div className='details'>
-        <div className='segment ui header-nav '>
-
-          <i className=' red inverted angle left icon big' onClick={this.goBack.bind(this)} />
-          详情页
-        </div>
+        <HeaderNav title='详情页' goBack={this.goBack} />
         { isFetching
           ? <h2>loading...</h2>
           : <div className='content-box'>
@@ -108,12 +125,12 @@ class Details extends React.Component {
                 }
             </div>
             {/* 评论输入框 */}
-            <form className='ui reply form'>
+            <form ref='form' className='ui reply form'>
               <div className='field'>
                 <textarea ref='comment' defaultValue='' />
               </div>
-              <div className='ui blue labeled submit icon button'
-                onClick={this.submit}><i className='icon edit' /> Add Reply </div>
+              <div className={btnSubmitClass}
+                onClick={this.submit}><i className='icon edit' />评论</div>
             </form>
           </div>
         }
