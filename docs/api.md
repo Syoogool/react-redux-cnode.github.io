@@ -25,3 +25,18 @@
   content String 评论的主体
   reply_id String 如果这个评论是对另一个评论的回复，请务必带上此字段。这样前端就可以构建出评论线索图。
 
+# 消息通知
+  url: https://cnodejs.org/api/v1/message/count
+  method: GET
+  params:
+    accesstoken String  
+     f4534249-4043-4f78-95a3-1c8bb18af29c
+
+# 新建主题
+  url: https://cnodejs.org/api/v1/topics
+  params:
+    accesstoken String 用户的 accessToken
+    title String 标题
+    tab String 目前有 ask share job dev。开发新客户端的同学，请务必将你们的测试帖发在 dev 专区
+    content String 主体内容
+
