@@ -2,12 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import Posts from '../../components/Posts'
 import Navbar from '../../components/Navbar'
 import InfiniteScroll from 'react-infinite-scroller'
 import classNames from 'classnames'
 import { selectTab, fetchPostsIfNeeded } from '../../actions'
 import './home.css'
+
+const Content = styled.div`
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: left;
+`
 
 class Home extends React.Component {
   constructor (props) {
@@ -68,16 +76,18 @@ class Home extends React.Component {
           <li><Link to='/?tab=job' className={classNames({'selected': selectedTab === 'job'})}>招聘</Link></li>
           <li><Link to='/?tab=dev' className={classNames({'selected': selectedTab === 'dev'})}>测试</Link></li>
         </ul>
-        { isEmpty ? (isFetching ? <h2>loading...</h2> : <h2>empty</h2>)
-          : <InfiniteScroll
-            pageStart={0}
-            // loadMore={debounce(this.loadMore.bind(this), 1000)}
-            loadMore={this.loadMore}
-            hasMore
-            loader={<div>load.......</div>}>
-            <Posts posts={posts} isFetching={isFetching} key={pageCount + 1} />
-          </InfiniteScroll>
-        }
+        <Content>
+          { isEmpty ? (isFetching ? <h2>loading...</h2> : <h2>empty</h2>)
+            : <InfiniteScroll
+              pageStart={0}
+              // loadMore={debounce(this.loadMore.bind(this), 1000)}
+              loadMore={this.loadMore}
+              hasMore
+              loader={<div>load.......</div>}>
+              <Posts posts={posts} isFetching={isFetching} key={pageCount + 1} />
+            </InfiniteScroll>
+          }
+        </Content>
         <Navbar />
       </div>
     )
