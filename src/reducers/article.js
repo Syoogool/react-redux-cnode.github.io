@@ -1,4 +1,3 @@
-// article actions
 import { REQUEST_ARTICLE, RECEIVE_SUCESS, RECEIVE_FAIL } from '../actions/article'
 
 const article = (state = {
