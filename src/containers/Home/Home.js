@@ -7,6 +7,7 @@ import Posts from '../../components/Posts'
 import Navbar from '../../components/Navbar'
 import InfiniteScroll from 'react-infinite-scroller'
 import classNames from 'classnames'
+import Loader from '../../components/Loader'
 import { selectTab, fetchPostsIfNeeded } from '../../actions'
 import './home.css'
 
@@ -77,7 +78,7 @@ class Home extends React.Component {
           <li><Link to='/?tab=dev' className={classNames({'selected': selectedTab === 'dev'})}>测试</Link></li>
         </ul>
         <Content>
-          { isEmpty ? (isFetching ? <h2>loading...</h2> : <h2>empty</h2>)
+          { isEmpty ? (isFetching ? <Loader /> : <h2>empty</h2>)
             : <InfiniteScroll
               pageStart={0}
               // loadMore={debounce(this.loadMore.bind(this), 1000)}
