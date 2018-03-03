@@ -9,9 +9,6 @@ const Notifice = props => {
   notification.notice({
     content: <span>{ props.content }</span>,
     duration: 2,
-    onClose () {
-      console.log('simple close')
-    },
     style: {
       border: '1px solid green'
     }

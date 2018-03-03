@@ -73,7 +73,6 @@ class Home extends React.Component {
   componentDidMount () {
     const { dispatch, auth } = this.props
     // 一个问题  强制刷新可能出现auth得不到登陆信息
-    console.log(auth)
     dispatch(fetchMessage(auth.token))
   }
 
@@ -82,7 +81,6 @@ class Home extends React.Component {
     const { dispatch, auth } = this.props
     const { hasnot_read_messages, has_read_messages } = this.props.message
     let arr = hasnot_read_messages
-    console.log(arr)
     // 使用map遍历修改嵌套对象属性
     // arr.map((item, i) => {
     //   if (item.id === val) {
@@ -101,7 +99,6 @@ class Home extends React.Component {
       accesstoken: auth.token
     })
     .then(res => {
-      console.log(res)
       dispatch(receiveSucces(newMessage))
     })
   }

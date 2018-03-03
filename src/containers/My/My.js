@@ -37,7 +37,6 @@ class HomeContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   const { auth } = state
   const { userInfo, token } = auth
 

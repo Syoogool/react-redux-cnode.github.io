@@ -22,7 +22,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const history = createHistory()
-// let preloadedState = {'auth': JSON.parse(window.sessionStorage.getItem('auth'))}
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(routerMiddleware(history), ...middleware))

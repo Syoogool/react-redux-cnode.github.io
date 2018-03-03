@@ -52,9 +52,6 @@ class CreateForm extends React.Component {
     notification.notice({
       content: <span>创建主题成功</span>,
       duration: 2,
-      onClose () {
-        console.log('simple close')
-      },
       style: {
         border: '1px solid green'
       }
@@ -78,7 +75,6 @@ class CreateForm extends React.Component {
       this.resetForm()
       // 创建成功提示消息
       this.simpleFn()
-      console.log(res)
     })
     .then(error => {
       console.log(error)
