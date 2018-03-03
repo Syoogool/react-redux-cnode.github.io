@@ -1,9 +1,8 @@
-import {
-  SELECT_TAB,
-  REQUEST_POSTS,
-  INVALIDATE_POSTS,
-  RECEIVE_POSTS
-} from '../constants/topic'
+
+export const SELECT_TAB = 'SELECT_TAB'
+export const REQUEST_POSTS = 'REQUEST_POSTS'
+export const INVALIDATE_POSTS = 'INVALIDATE_POSTS'
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 
 export const selectTab = tab => ({
   type: SELECT_TAB,
