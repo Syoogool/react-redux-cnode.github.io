@@ -32,6 +32,18 @@
     accesstoken String  
      f4534249-4043-4f78-95a3-1c8bb18af29c
 
+# 单个消息标记为已读
+  url: https://cnodejs.org/api/v1/message/mark_one/:id
+  method: POST
+  params:
+   accesstoken
+
+# 获取未读消息数 (这个应该放在全局，也就是根组件)
+  url: https://cnodejs.org/api/v1/message/count
+  method: GET
+  params
+    accesstoken String
+
 # 新建主题
   url: https://cnodejs.org/api/v1/topics
   params:

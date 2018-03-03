@@ -57,7 +57,8 @@ reselect
 1 styled-components
 
 ## 单元测试
-  jest
+  1 需要安装jest-cli
+  2 redux测试 see: http://cn.redux.js.org//docs/recipes/WritingTests.html
 
 
 ## 优化技术
