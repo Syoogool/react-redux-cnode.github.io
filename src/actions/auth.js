@@ -1,24 +1,6 @@
-import React from 'react'
 import axios from 'axios'
 import { push } from 'react-router-redux'
-import Notification from 'rc-notification'
-import 'rc-notification/assets/index.css'
-
-let notification = null
-Notification.newInstance({}, (n) => notification = n)
-
-const notifice = function (val) {
-  notification.notice({
-    content: <span>{ val }</span>,
-    duration: 2,
-    style: {
-      transform: 'translateX(-50%)',
-      borderRadius: '5px',
-      background: 'rgba(0, 0, 0, .8)',
-      color: '#fff'
-    }
-  })
-}
+import notifice from '../components/Notifice'
 
 export const questAuth = token => ({
   type: 'QUEST_AUTH',

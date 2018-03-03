@@ -5,14 +5,17 @@ import 'rc-notification/assets/index.css'
 let notification = null
 Notification.newInstance({}, (n) => notification = n)
 
-const Notifice = props => {
+const notifice = info => {
   notification.notice({
-    content: <span>{ props.content }</span>,
+    content: <span>{ info }</span>,
     duration: 2,
     style: {
-      border: '1px solid green'
+      transform: 'translateX(-50%)',
+      borderRadius: '5px',
+      background: 'rgba(0, 0, 0, .8)',
+      color: '#fff'
     }
   })
 }
 
-export default Notifice
+export default notifice
