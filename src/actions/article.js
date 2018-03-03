@@ -25,7 +25,6 @@ const fetchArticle = id => dispatch => {
   const url = `https://cnodejs.org/api/v1/topic/${id}`
   return axios.get(url)
     .then(res => {
-      console.log(res.data.data)
       // 因为少写了一个参数id 浪费了好多时间，不过这引出了探索异步action的一些解决方案问题（redux-thunk redux-promis redux-soga)
       dispatch(receiveSucess(id, res.data.data))
     })
