@@ -2,9 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import styled from 'styled-components'
+import Notification from 'rc-notification'
+import 'rc-notification/assets/index.css'
 import { authFail } from '../../actions/auth'
 import Navbar from '../../components/Navbar'
 import HeaderNav from '../../components/HeaderNav'
+
+let notification = null
+Notification.newInstance({}, (n) => notification = n)
 
 const Content = styled.div`
   padding-top: 50px;
@@ -15,7 +20,21 @@ class HomeContainer extends React.Component {
   logout () {
     const { dispatch } = this.props
     dispatch(authFail())
+    this.notifice('退出成功')
     dispatch(push('/login'))
+  }
+
+  notifice (val) {
+    notification.notice({
+      content: <span>{ val }</span>,
+      duration: 2,
+      style: {
+        transform: 'translateX(-50%)',
+        borderRadius: '5px',
+        background: 'rgba(0, 0, 0, .8)',
+        color: '#fff'
+      }
+    })
   }
 
   render () {
