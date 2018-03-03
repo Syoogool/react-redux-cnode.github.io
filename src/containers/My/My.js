@@ -1,8 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import styled from 'styled-components'
 import { authFail } from '../../actions/auth'
 import Navbar from '../../components/Navbar'
+import HeaderNav from '../../components/HeaderNav'
+
+const Content = styled.div`
+  padding-top: 50px;
+`
 
 class HomeContainer extends React.Component {
   // 退出登陆 同时清除sessionStorage
@@ -16,12 +22,14 @@ class HomeContainer extends React.Component {
     const { token, userInfo } = this.props
     return (
       <div className='home'>
-        <h1>my page</h1>
-        <img src={userInfo.avatar_url} alt={userInfo.loginname} />
-        <p>{userInfo.loginname}</p>
-        <p>你的token: {token}</p>
+        <HeaderNav title='我的主页' />
+        <Content>
+          <img src={userInfo.avatar_url} alt={userInfo.loginname} />
+          <p>{userInfo.loginname}</p>
+          <p>你的token: {token}</p>
 
-        <button onClick={this.logout.bind(this)}>退出登陆</button>
+          <button onClick={this.logout.bind(this)}>退出登陆</button>
+        </Content>
         <Navbar />
       </div>
     )
