@@ -3,15 +3,10 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { Form, TextArea, Select, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
-import Notification from 'rc-notification'
-import 'rc-notification/assets/index.css'
+import notice from '../../components/Notifice'
 import Navbar from '../../components/Navbar'
 import HeaderNav from '../../components/HeaderNav'
 import NoLogin from '../../components//NoLogin'
-
-
-let notification = null
-Notification.newInstance({}, (n) => notification = n)
 
 // 外边距合并问题
 const Content = styled.div`
@@ -47,16 +42,6 @@ class CreateForm extends React.Component {
       content: ''
     })
   }
-
-  simpleFn () {
-    notification.notice({
-      content: <span>创建主题成功</span>,
-      duration: 2,
-      style: {
-        border: '1px solid green'
-      }
-    })
-  }
   
   // 表单提交处理事件
   handleSubmit = () => {
@@ -74,10 +59,15 @@ class CreateForm extends React.Component {
       // 重置表单
       this.resetForm()
       // 创建成功提示消息
-      this.simpleFn()
+      notice('创建成功')
     })
-    .then(error => {
-      console.log(error)
+    .catch(error => {
+      if (error.response) {
+        console.log(error.response.data)
+        notice(error.response.data.error_msg)
+      } else {
+        console.log('Error', error.message)
+      }
     })
   }
 
