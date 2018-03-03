@@ -66,6 +66,8 @@ class Navbar extends React.Component {
 
   render () {
     const { count } = this.props.message
+    const { isAuthenticated } = this.props.auth
+
     return (
       <Nav>
         <Li>
@@ -82,7 +84,7 @@ class Navbar extends React.Component {
         </Li>
         <Li>
           <StyledNavLink to='/message' activeStyle={activeStyle}>
-            { count > 0 ? <StyledMessage>{ count }</StyledMessage> : ''}
+            { (isAuthenticated && count > 0) ? <StyledMessage>{ count }</StyledMessage> : ''}
             <Icon name='bell outline' />
             <span>消息</span>
           </StyledNavLink>
