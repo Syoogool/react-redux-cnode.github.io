@@ -11,11 +11,11 @@ class LoginContainer extends React.Component {
   submit () {
     const { dispatch } = this.props
     const { value } = this.refs.token
+    const state = this.props.history.location.state
     // 上一页面导航路由
-    const fromURL = this.props.history.location.state.from.pathname || '/'
-    // if (this.props.history.location.state) {
-    //   const fromURL = this.props.history.location.state.from.pathname || '/'
-    // }
+
+    const fromURL = state ? state.from.pathname : '/'
+
     dispatch(auth(value, fromURL))
   }
 
