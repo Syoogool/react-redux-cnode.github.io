@@ -23,7 +23,10 @@ const H3 = styled.h3`
 
 const HeaderNav = props =>
   <Div>
-    <i className='teal inverted angle left icon big' onClick={props.goBack} />
+    { props.icon
+      ? <i className='teal inverted angle left icon big' onClick={props.goBack} />
+      : ''
+    }
     <H3>{ props.title }</H3>
   </Div>
 
