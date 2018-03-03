@@ -3,7 +3,7 @@ import {
   INVALIDATE_POSTS,
   REQUEST_POSTS,
   RECEIVE_POSTS
-} from '../constants/topic'
+} from '../actions/index'
 
 export const selectedTab = (state = 'all', action) => {
   switch (action.type) {
