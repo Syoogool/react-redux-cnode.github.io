@@ -4,6 +4,9 @@ import auth from './auth.js'
 import article from './article'
 // 同步路由的reducer
 import { routerReducer } from 'react-router-redux'
+// 表单
+import { reducer as formReducer } from 'redux-form'
+import message from './message'
 
 // 合并reducer
 const rootReducer = combineReducers({
@@ -11,7 +14,9 @@ const rootReducer = combineReducers({
   postsByTab,
   article,
   auth,
-  router: routerReducer
+  message,
+  router: routerReducer,
+  form: formReducer
 })
 
 export default rootReducer
