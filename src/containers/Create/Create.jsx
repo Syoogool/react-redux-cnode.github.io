@@ -100,7 +100,6 @@ class CreateForm extends React.Component {
 class Create extends React.Component {
   render () {
     const { auth } = this.props
-    console.log(this.props)
     
     return (
       <React.Fragment>
