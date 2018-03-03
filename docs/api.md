@@ -15,7 +15,8 @@
 # token登陆
   url: https://cnodejs.org/api/v1/accesstoken
   method: POST
-  params: f4534249-4043-4f78-95a3-1c8bb18af29c
+  params: f4534249-4043-4f78-95a3-1c8bb18af29c 
+          d7ef1818-bc76-4d4d-96ef-4a1cd0d20a9f
 
 # 评论
  url:  https://cnodejs.org/api/v1/topic/:topic_id/replies
