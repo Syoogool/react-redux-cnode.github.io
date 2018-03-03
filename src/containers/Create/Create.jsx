@@ -63,7 +63,6 @@ class CreateForm extends React.Component {
     })
     .catch(error => {
       if (error.response) {
-        console.log(error.response.data)
         notice(error.response.data.error_msg)
       } else {
         console.log('Error', error.message)

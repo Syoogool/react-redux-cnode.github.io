@@ -3,18 +3,13 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import classNames from 'classnames'
 import styled from 'styled-components'
-import Notification from 'rc-notification'
-import 'rc-notification/assets/index.css'
+import notice from '../../components/Notifice'
 import { format, htmlSpecialChars } from '../../utils/index'
 import { fetchPostsIfNeeded, receiveSucess } from '../../actions/article'
 import HeaderNav from '../../components/HeaderNav'
 import Loader from '../../components/Loader'
 import './github-markdown.css'
 import './details.css'
-
-// import ReplyList from '../../components/ReplyList'
-let notification = null
-Notification.newInstance({}, (n) => notification = n)
 
 const Content = styled.div`
   max-width: 1080px;
@@ -47,7 +42,6 @@ class Details extends React.Component {
     super(props)
     this.submit = this.submit.bind(this)
     this.goBack = this.goBack.bind(this)
-    this.simpleFn = this.simpleFn.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
       isPosting: false,
@@ -93,7 +87,7 @@ class Details extends React.Component {
       this.setState({ length: 0 })
 
       // 评论提示信息
-      this.simpleFn()
+      notice('评论成功')
 
       const data = {
         author: {
@@ -118,22 +112,10 @@ class Details extends React.Component {
       this.setState({
         isPosting: false
       })
-      console.log(err)
-    })
-  }
-
-  simpleFn () {
-    notification.notice({
-      content: <span>评论成功</span>,
-      duration: 2,
-      onClose () {
-        console.log('simple close')
-      },
-      style: {
-        transform: 'translateX(-50%)',
-        borderRadius: '5px',
-        background: 'rgba(0, 0, 0, .8)',
-        color: '#fff'
+      if (err.response) {
+        notice(err.response.data.error_msg)
+      } else {
+        console.log('Error', err.message)
       }
     })
   }
