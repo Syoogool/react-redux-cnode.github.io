@@ -38,3 +38,17 @@ export function format (t) {
     prefixInteger(hours, 2) + ':' + prefixInteger(minutes, 2) + ':' +
     prefixInteger(seconds, 2) + '.' + milliseconds + 'Z'
 }
+
+/**
+ * [htmlSpecialChars 过滤html中特殊字符]
+ * @param  {[type]} str [description]
+ * @return {[type]}     [description]
+ */
+export function htmlSpecialChars (str) {
+  str = str.replace(/&/g, '&amp;')
+  str = str.replace(/</g, '&lt;')
+  str = str.replace(/>/g, '&gt;')
+  str = str.replace(/"/g, '&quot;')
+  str = str.replace(/'/g, '&#039;')
+  return str
+}
