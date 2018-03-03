@@ -4,7 +4,6 @@ import auth from './auth.js'
 import article from './article'
 // 同步路由的reducer
 import { routerReducer } from 'react-router-redux'
-// 表单
 import { reducer as formReducer } from 'redux-form'
 import message from './message'
 
