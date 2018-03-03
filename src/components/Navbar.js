@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
+import { fetchMessageCount } from '../actions/message'
 
 const Nav = styled.ul`
   display: flex;
@@ -27,6 +29,7 @@ const Li = styled.li`
 `
 const StyledNavLink = styled(NavLink)`
   display: flex;
+  position: relative;
   width: 100%;
   height: 100%;
   flex-direction: column;
@@ -35,38 +38,72 @@ const StyledNavLink = styled(NavLink)`
   font-weight: bold;
   color: #0e90d2;
 `
+const StyledMessage = styled.span`
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: red;
+  color: #fff;
+  z-index: 10
+`
 
 const activeStyle = {
   color: 'palevioletred'
 }
 
-const Navbar = () => (
-  <Nav>
-    <Li>
-      <StyledNavLink exact to='/' activeStyle={activeStyle}>
-        <Icon name='home' />
-        <span>首页</span>
-      </StyledNavLink>
-    </Li>
-    <Li>
-      <StyledNavLink to='/create' activeStyle={activeStyle}>
-        <Icon name='write square' />
-        <span>创建</span>
-      </StyledNavLink>
-    </Li>
-    <Li>
-      <StyledNavLink to='/message' activeStyle={activeStyle}>
-        <Icon name='bell outline' />
-        <span>消息</span>
-      </StyledNavLink>
-    </Li>
-    <Li>
-      <StyledNavLink to='/my' activeStyle={activeStyle}>
-        <Icon name='user circle' />
-        <span>我的</span>
-      </StyledNavLink>
-    </Li>
-  </Nav>
-)
+class Navbar extends React.Component {
+  componentDidMount () {
+    const { dispatch } = this.props
+    const { token } = this.props.auth
 
-export default Navbar
+    if (token) {
+      dispatch(fetchMessageCount(token))
+    }
+  }
+
+  render () {
+    const { count } = this.props.message
+    return (
+      <Nav>
+        <Li>
+          <StyledNavLink exact to='/' activeStyle={activeStyle}>
+            <Icon name='home' />
+            <span>首页</span>
+          </StyledNavLink>
+        </Li>
+        <Li>
+          <StyledNavLink to='/create' activeStyle={activeStyle}>
+            <Icon name='write square' />
+            <span>创建</span>
+          </StyledNavLink>
+        </Li>
+        <Li>
+          <StyledNavLink to='/message' activeStyle={activeStyle}>
+            { count > 0 ? <StyledMessage>{ count }</StyledMessage> : ''}
+            <Icon name='bell outline' />
+            <span>消息</span>
+          </StyledNavLink>
+        </Li>
+        <Li>
+          <StyledNavLink to='/my' activeStyle={activeStyle}>
+            <Icon name='user circle' />
+            <span>我的</span>
+          </StyledNavLink>
+        </Li>
+      </Nav>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  const { auth, message } = state
+
+  return {
+    auth,
+    message
+  }
+}
+export default connect(mapStateToProps)(Navbar)
