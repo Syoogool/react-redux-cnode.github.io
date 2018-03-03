@@ -19,7 +19,9 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        isLogining: false
+        isLogining: false,
+        token: '',
+        userInfo: {}
       }
     default:
       return state
