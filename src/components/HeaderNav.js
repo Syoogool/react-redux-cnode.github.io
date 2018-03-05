@@ -14,20 +14,26 @@ const Div = styled.div`
   background: #fff;
   z-index: 1000;
 `
+// 利用styled 的 props动态计算属性值
 const H3 = styled.h3`
   display: inline-block;
   margin-top: 0;
-  margin-left: calc(50% - 33px);
+  margin-left: ${props => props.icon ? 'calc(50% - 33px)' : 'calc(50%)'};
   transform: translateX(-50%);
 `
 
-const HeaderNav = props =>
-  <Div>
-    { props.icon
-      ? <i className='teal inverted angle left icon big' onClick={props.goBack} />
-      : ''
-    }
-    <H3>{ props.title }</H3>
-  </Div>
+const HeaderNav = props => {
+  const goBack = () => props.history.goBack()
+
+  return (
+    <Div>
+      { props.icon
+        ? <i className='teal inverted angle left icon big' onClick={goBack} />
+        : ''
+      }
+      <H3 icon={props.icon}>{ props.title }</H3>
+    </Div>
+  )
+}
 
 export default HeaderNav
