@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
-
+import Loadable from 'react-loadable'
+import Loader from '../../components/Loader'
 // 代码分割的异步组件
 import asyncComponent from '../../components/AsyncComponent'
 import './App.css'
@@ -11,7 +12,14 @@ import 'semantic-ui-css/semantic.min.css'
 const AsyncHome = asyncComponent(() => import('../Home/Home'))
 const AsyncLogin = asyncComponent(() => import('../Login/Login'))
 const AsyncCreate = asyncComponent(() => import('../Create/Create'))
-const AsyncMy = asyncComponent(() => import('../My/My'))
+// const AsyncMy = asyncComponent(() => import('../My/My'))
+
+const AsyncMy = Loadable({
+  loader: () => import('../My/My'),
+  loading: Loader,
+  delay: 200
+})
+
 const AsyncMessage = asyncComponent(() => import('../Message/Message'))
 const AsyncDetails = asyncComponent(() => import('../Details/Details'))
 

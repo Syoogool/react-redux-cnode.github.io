@@ -8,12 +8,11 @@ import Navbar from '../../components/Navbar'
 import HeaderNav from '../../components/HeaderNav'
 import { fetchMessage, receiveSucces } from '../../actions/message'
 import Loader from '../../components/Loader'
+import BaseContent from '../../components/BaseContent'
 
-const Content = styled.div`
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 100px 10px;
-  text-align: left;
+const ContentBox = styled.div`
+  position: relative;
+  margin-bottom: 100px;
 `
 const RedDot = styled.div`
   display: inline-block;
@@ -104,11 +103,15 @@ class Home extends React.Component {
   }
 
   render () {
-    const { hasnot_read_messages, has_read_messages, isFetching } = this.props.message
+    const {
+      hasnot_read_messages,
+      has_read_messages, isFetching
+    } = this.props.message
+
     return (
-      <div className='home'>
+      <ContentBox>
         <HeaderNav title='信息' />
-        <Content>
+        <BaseContent>
           {
             isFetching
               ? <Loader />
@@ -116,16 +119,16 @@ class Home extends React.Component {
                 <Header as='h3' dividing>未读消息</Header>
                 {hasnot_read_messages.map((item, i) =>
                   <CommentItem key={i} item={item} mark={this.markOne} />
-                )}
+                  )}
                 <Header as='h3' dividing>已读消息</Header>
                 {has_read_messages.map((item, i) =>
                   <CommentItem key={i} item={item} mark={this.markOne} />
-                )}
+                  )}
               </Comment.Group>
           }
-        </Content>
+        </BaseContent>
         <Navbar />
-      </div>
+      </ContentBox>
     )
   }
 }

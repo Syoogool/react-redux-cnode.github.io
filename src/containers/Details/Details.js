@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Loadable from 'react-loadable'
+import { Comment, Header } from 'semantic-ui-react'
 import { fetchPostsIfNeeded } from '../../actions/article'
 import HeaderNav from '../../components/HeaderNav'
 import Loader from '../../components/Loader'
 import CommentForm from '../../components/CommentForm'
+import BaseContent from '../../components/BaseContent'
 // import CommentList from '../../components/CommentList'
 import './github-markdown.css'
 import './details.css'
@@ -14,13 +16,6 @@ const LoadableCommentForm = Loadable({
   loader: () => import('../../components/CommentList'),
   loading: () => <div>Loading...</div>,
 });
-
-const Content = styled.div`
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 100px 0;
-  text-align: left;
-`
 
 class Details extends React.Component {
   componentDidMount () {
@@ -33,19 +28,32 @@ class Details extends React.Component {
   render () {
     // 如何拿到深层数据
     // 这个问题貌似说明要使用的数据最好在state中初始化，特别是要迭代的对象
-    const {author, content, isFetching, replies, title} = this.props.article
+    const {
+      author, content, isFetching,replies, title,
+      create_at, visit_count, reply_count
+    } = this.props.article
 
     return (
       <div className='details'>
         <HeaderNav title='详情页' icon='true' history={this.props.history} />
-        <Content>
+        <BaseContent>
           { isFetching
             ? <Loader />
             : <div className='content-box'>
-              <h2 className='ui header'>
-                <img className='ui image' src={author.avatar_url} alt={author.loginname} />
-                <div className='content'>{ title }</div>
-              </h2>
+              <Comment.Group>
+                <Comment>
+                  <Comment.Avatar as='a' src={author.avatar_url} alt={author.loginname} />
+                  <Comment.Content>
+                    <Comment.Author>{author.loginname}</Comment.Author>
+                    <Comment.Actions>
+                      <Comment.Action>{create_at}</Comment.Action>
+                      <Comment.Action>{visit_count}阅读</Comment.Action>
+                      <Comment.Action>{reply_count}回复</Comment.Action>
+                    </Comment.Actions>
+                  </Comment.Content>
+                </Comment>
+              </Comment.Group>
+              <Header as='h2' block textAlign='left' size='large'>{ title }</Header>
               <div className='markdown-body'>
                 {/* dangerouslySetInnerHTML 是 React 用于代替在浏览器 DOM 中使用 innerHTML */}
                 <div dangerouslySetInnerHTML={{__html: content}} />
@@ -68,7 +76,7 @@ class Details extends React.Component {
               />
             </div>
           }
-        </Content>
+        </BaseContent>
       </div>
     )
   }

@@ -4,6 +4,12 @@ body {
   font-family: sans-serif;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -31,4 +37,53 @@ body {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+html {
+    font-size: 12px;
+}
+@media (min-width:320px){
+  html{
+    font-size: 14.2222px;
+  }
+}
+@media (min-width:360px){
+  html{
+    font-size: 16px;
+  }
+}
+@media (min-width:375px){
+  html{
+    font-size: 16.6667px;
+  }
+}
+@media (min-width:412px){
+  html{
+    font-size: 18.2857px;
+  }
+}
+@media (min-width:480px){
+  html{
+    font-size: 21.3333px;
+  }
+}
+@media (min-width:640px){
+  html{
+    font-size: 28.4444px;
+  }
+}
+@media (min-width:720px){
+  html{
+    font-size: 32px;
+  }
+}
+@media (min-width:768px){
+  html{
+    font-size: 34.1333px;
+  }
+}
+@media (min-width:1440px){
+  html{
+    font-size: 64px;
+  }
 }

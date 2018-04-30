@@ -1,40 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import styled from 'styled-components'
-import Notification from 'rc-notification'
-import 'rc-notification/assets/index.css'
+import { Image, Button, Statistic } from 'semantic-ui-react'
+import notifice from '../../components/Notifice'
 import { authFail } from '../../actions/auth'
 import Navbar from '../../components/Navbar'
 import HeaderNav from '../../components/HeaderNav'
-
-let notification = null
-Notification.newInstance({}, (n) => notification = n)
-
-const Content = styled.div`
-  padding-top: 50px;
-`
+import BaseContent from '../../components/BaseContent'
 
 class HomeContainer extends React.Component {
   // 退出登陆 同时清除sessionStorage
   logout () {
     const { dispatch } = this.props
     dispatch(authFail())
-    this.notifice('退出成功')
+    notifice('退出成功')
     dispatch(push('/login'))
-  }
-
-  notifice (val) {
-    notification.notice({
-      content: <span>{ val }</span>,
-      duration: 2,
-      style: {
-        transform: 'translateX(-50%)',
-        borderRadius: '5px',
-        background: 'rgba(0, 0, 0, .8)',
-        color: '#fff'
-      }
-    })
   }
 
   render () {
@@ -42,13 +22,22 @@ class HomeContainer extends React.Component {
     return (
       <div className='home'>
         <HeaderNav title='我的主页' />
-        <Content>
-          <img src={userInfo.avatar_url} alt={userInfo.loginname} />
-          <p>{userInfo.loginname}</p>
-          <p>你的token: {token}</p>
+        <BaseContent>
+          <Image
+            src={userInfo.avatar_url}
+            alt={userInfo.loginname}
+            circular
+            centered
+            />
+          <Statistic.Group>
+            <Statistic size='mini' horizontal>
+              <Statistic.Label>用户名: </Statistic.Label>
+              <Statistic.Value>{userInfo.loginname}</Statistic.Value>
+            </Statistic>
+          </Statistic.Group>
 
-          <button onClick={this.logout.bind(this)}>退出登陆</button>
-        </Content>
+          <Button onClick={this.logout.bind(this)}>退出登陆</Button>
+        </BaseContent>
         <Navbar />
       </div>
     )

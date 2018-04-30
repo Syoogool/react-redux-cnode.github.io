@@ -52,7 +52,7 @@ class LoginContainer extends React.Component {
               onChange={this.handleChange}
             />
           </Form.Field>
-          <Button type='submit' className={submitClass} onClick={this.submit}>登陆</Button>
+          <Button fluid primary type='submit' className={submitClass} onClick={this.submit}>登陆</Button>
         </Form>
       </div>
     )
