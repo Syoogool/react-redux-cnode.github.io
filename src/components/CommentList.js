@@ -11,10 +11,6 @@ class CommentList extends React.Component {
     this.handleDisplay = this.handleDisplay.bind(this)
   }
 
-  componentDidMount () {
-    console.log('test')
-  }
-
   handleDisplay (e) {
     console.log(e)
     // see http://blog.csdn.net/domBREAKPoint/article/details/76732256

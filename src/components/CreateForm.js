@@ -70,7 +70,7 @@ class CreateForm extends React.Component {
           <Form.Input fluid name='title' value={title} onChange={this.handleChange} placeholder='标题字数不少于10字' />
         </Form.Group>
         <Form.Field control={TextArea} name='content' value={content} onChange={this.handleChange} placeholder='内容字数不少于30字' />
-        <Form.Field control={Button}>提交</Form.Field>
+        <Form.Field floated='right' control={Button}>提交</Form.Field>
         { /*<pre>{JSON.stringify({ tab, title, content }, null, 2)}</pre> */}
       </Form>
     )

@@ -10,7 +10,8 @@ const Loader = () => (
     speed={2}
     primaryColor={'#f3f3f3'}
     secondaryColor={'#ecebeb'}
-	>
+    style={{marginLeft: '20px'}}
+    >
     <rect x='70' y='15' rx='4' ry='4' width='117' height='6.4' />
     <rect x='70' y='35' rx='3' ry='3' width='85' height='6.4' />
     <rect x='0' y='80' rx='3' ry='3' width='350' height='6.4' />

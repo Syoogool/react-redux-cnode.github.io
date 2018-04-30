@@ -11,10 +11,10 @@ const Nav = styled.ul`
   box-sizing: border-box;
   width: 100%;
   height: 40px;
-  flex-direction: row;
-  justify-content: flex-start;
   left: 0;
   bottom: 0;
+  flex-direction: row;
+  justify-content: flex-start;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -42,12 +42,14 @@ const StyledMessage = styled.span`
   position: absolute;
   top: 10%;
   left: 50%;
-  width: 18px;
-  height: 18px;
+  width: 1.2rem;
+  height:1.2rem;
   border-radius: 50%;
-  background: red;
+  background: #f1403c;
   color: #fff;
-  z-index: 10
+  font-size: 12px;
+  z-index: 10;
+
 `
 
 const activeStyle = {

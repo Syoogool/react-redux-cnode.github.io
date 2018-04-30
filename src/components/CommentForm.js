@@ -4,12 +4,14 @@ import classNames from 'classnames'
 import { format, htmlSpecialChars } from '../utils/index'
 import { receiveSucess } from '../actions/article'
 import notice from './Notifice'
+import BaseModal from '../components/BaseModal'
 
 class CommentForm extends React.Component {
   constructor (props) {
     super(props)
     this.submit = this.submit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
     this.state = {
       isPosting: false,
       length: 0
@@ -19,6 +21,10 @@ class CommentForm extends React.Component {
   handleChange (e) {
     const length = e.target.value.trim().length
     this.setState({ length })
+  }
+
+  handleFocus () {
+    const { isAuthenticated } = this.props.auth
   }
 
   submit () {
@@ -106,13 +112,17 @@ class CommentForm extends React.Component {
     return (
       <form ref='form' className='ui reply form'>
         <div className='field'>
-          <textarea ref='comment' defaultValue=''
+          <textarea
+            ref='comment'
+            defaultValue=''
             onChange={this.handleChange}
+            onFocus={this.handleFochs}
             placeholder={this.props.id ? `@${this.props.loginname}` : ''}
           />
         </div>
         <div className={btnSubmitClass}
-          onClick={this.submit}><i className='icon edit' />评论</div>
+          onClick={this.submit}>
+          <i className='icon edit' />评论</div>
       </form>
     )
   }
