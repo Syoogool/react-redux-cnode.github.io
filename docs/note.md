@@ -22,3 +22,23 @@
   1 使用redux 每个不同类型的请求都需要单独写action reducers ?
   2 评论是否需要redux  貌似只需要登录状态就可以
 
+
+# 功能
+  1 redux管理数据和展示
+  2 登陆权限
+  3 评论系统
+  4 消息管理
+  5 创建帖子
+  6 代码分割优化
+
+# 还未完全掌握的功能(对照官网）
+1 context
+2 portals
+3 高阶组件
+4 单元测试
+5 react动画
+  ## redux
+    selector
+    morlize
+    redux-form
+    不可变数据结构
